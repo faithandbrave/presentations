@@ -1,0 +1,95 @@
+C++Now! Library in a Week manuscript
+
+
+I have 2 idea for algorithm.
+replace Output Iterator and Extended Range.
+
+My profile...
+
+Caution.
+I don't can speak very little English.
+I may not answer the question immediately.
+
+first idea is "OutputIteraotors Must Go".
+
+This idea overview
+Now, we don't need Output Iterator.
+Because we have lambda.
+Some STL algorithm can replace from Output Iterator to UnaryFunction.
+
+Basic example. std::copy can replace std::for_each.
+Before, and After.
+This replacement is failry useful.
+
+
+More useful example: STL set algorithm.
+set_union, set_intersection, and set_difference.
+This code is now standard algorithm using OutputIterator.
+But, Insert Iterator Adaptor is not useful.
+Output Iterator can't customize operation easily.
+If, std::set_union's parameter is UnaryFunction...
+
+UnaryFunction version is very useful.
+We can customize operation easily.
+I think need add UnaryFunction version algorithm.
+UnaryFunction version implementation is here.
+
+
+==
+
+2nd idea is Boost.Range extension. OvenToBoost project.
+
+What is OvenToBoost?
+Oven is Range Library in P-Stade C++ Libraries.
+I'm this library's committer.
+Oven is more useful than Boost Range Library.
+Now, I'm working on porting from Oven to Boost as extended Boost.Range.
+I'm working in GitHub this URL.
+
+Boost.Range's issue.
+Boost.Range is very small support Range Adaptors.
+and Boost.Range's Range adaptors can't use Lambda.
+Oven has solution for these issues.
+Oven provide many Range adaptors, and utilities.
+
+taken Range adaptor is make n length prefix range.
+
+dropped Range adaptor is reverse of taken.
+dropped Range adaptor make suffix Range.
+
+elements Range adaptor is extract elements from Range object as tuple.
+elements can applied to user defined type using Boost.Fusion.
+
+elements_key Range adaptor is extract elements by tag type.
+This adaptor implementation Boost.Fusion assosiative sequence.
+This adaptors is very useful for extract member variable.
+
+iteration function makes lazy infinite Range.
+iteration function's 2nd argument is next value calculation function.
+sequence of number of Mathematics often need infinite Range.
+
+regular function.
+regular function is function object conversion to Regular concept.
+Regular concept is DefaultConstructible and CopyAssignable.
+For example, Boost.Lambda and C++11's lambda is no DefaultConstructible and no CopyAssignable.
+This means, iterator of Range Adaptor with lambda is no match requirements InputIterator.
+regular function is lambda conversion to Regular Concept.
+
+and regular function is verbose.
+I provide regular operator "or plus (|+)" as regular function's syntax sugar.
+regular operator is compound operator. "or" and "plus".
+This design rationable.
+I need regular operator, but same primary operator of "or" is nothing.
+So, I must makes new operator.
+
+Finally, Combination examle. prime list.
+This code make infinite prime list using Oven range adaptor and utilities.
+This code algorithm is エラトステネス's sieve.
+
+Now OvenToBoost project's status.
+Primary implementation has been complete.
+and Test has been complete.
+But documentation is not complete. So, English is difficult.
+If documentation complete, I will submit to Boost.
+
+Thanks!
